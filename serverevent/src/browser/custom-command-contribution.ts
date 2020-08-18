@@ -12,7 +12,7 @@ export class CustomCommandContribution implements CommandContribution {
     }
 
     registerCommands(registry: CommandRegistry): void {
-        registry.registerCommand(DashboardCommands.SHOW_TABS, {
+        registry.registerCommand(CustomTabPanelCommands.SHOW_TABS, {
             isEnabled: () => true,
             execute: () => this.showTabs()
         });
@@ -24,11 +24,11 @@ export class CustomCommandContribution implements CommandContribution {
 
 }
 
-export namespace DashboardCommands {
-    export const DASHBOARD_CATEGORY = 'Dashboard';
+export namespace CustomTabPanelCommands {
+    export const CUSTOM_TABPANEL_CATEGORY = 'Dashboard';
     export const SHOW_TABS: Command = {
         id: 'dashboard.show.tabs',
-        category: DASHBOARD_CATEGORY,
+        category: CUSTOM_TABPANEL_CATEGORY,
         label: 'Dashboard : Show Tabs'
     };
 }
