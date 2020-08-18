@@ -6,11 +6,12 @@ import { bindViewContribution, FrontendApplicationContribution, WidgetFactory, W
 import '../../src/browser/style/index.css';
 import { TestServer, testPath, ReconnectingFileSystemWatcherServer, TestServerProxy } from '../common/test-protocol';
 
+import { FILE_NAVIGATOR_ID } from '@theia/navigator/lib/browser/navigator-widget';
+import { CustomTabPanel } from './custom-tab-panel';
+import { CommandContribution } from '@theia/core/lib/common/command';
+import { CustomCommandContribution } from './custom-command-contribution';
 
 export default new ContainerModule(bind => {
-
-  
-
 
     bind(TestServerProxy).toDynamicValue(ctx =>
         WebSocketConnectionProvider.createProxy(ctx.container, testPath)
@@ -26,6 +27,11 @@ export default new ContainerModule(bind => {
         createWidget: () => ctx.container.get<ServereventWidget>(ServereventWidget)
     })).inSingletonScope();
 
+    bind(CustomTabPanel).toSelf();
+    bind(WidgetFactory).toDynamicValue(context => ({
+        id: FILE_NAVIGATOR_ID,
+        createWidget: () => context.container.get(CustomTabPanel)
+    }));
 
-
+    bind(CommandContribution).to(CustomCommandContribution).inSingletonScope();
 });

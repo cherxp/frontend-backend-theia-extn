@@ -9,6 +9,6 @@
     "lerna": "2.4.0"
   },
   "workspaces": [
-    "serverevent", "browser-app", "electron-app"
+    "serverevent", "browser-app"
   ]
 }
