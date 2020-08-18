@@ -25,10 +25,10 @@ export class CustomCommandContribution implements CommandContribution {
 }
 
 export namespace CustomTabPanelCommands {
-    export const CUSTOM_TABPANEL_CATEGORY = 'Dashboard';
+    export const CUSTOM_TABPANEL_CATEGORY = 'TabPanel';
     export const SHOW_TABS: Command = {
-        id: 'dashboard.show.tabs',
+        id: 'TabPanel.show.tabs',
         category: CUSTOM_TABPANEL_CATEGORY,
-        label: 'Dashboard : Show Tabs'
+        label: 'TabPanel : Show Tabs'
     };
 }
