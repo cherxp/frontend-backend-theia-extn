@@ -5,12 +5,11 @@ import { bindViewContribution, FrontendApplicationContribution, WidgetFactory, W
 
 import '../../src/browser/style/index.css';
 import { TestServer, testPath, ReconnectingFileSystemWatcherServer, TestServerProxy } from '../common/test-protocol';
+import { ViewCommandContribution } from './command-contribution';
+import { CommandContribution } from '@theia/core/lib/common/command';
 
 
 export default new ContainerModule(bind => {
-
-  
-
 
     bind(TestServerProxy).toDynamicValue(ctx =>
         WebSocketConnectionProvider.createProxy(ctx.container, testPath)
@@ -26,6 +25,6 @@ export default new ContainerModule(bind => {
         createWidget: () => ctx.container.get<ServereventWidget>(ServereventWidget)
     })).inSingletonScope();
 
-
+    bind(CommandContribution).to(ViewCommandContribution).inSingletonScope();
 
 });
